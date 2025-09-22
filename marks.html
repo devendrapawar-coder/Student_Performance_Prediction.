@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mark Evaluation</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #74ebd5, #9face6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color: white;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      width: 300px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    input[type="number"] {
+      padding: 10px;
+      width: 100%;
+      margin-bottom: 15px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #4a90e2;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #357ABD;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      padding: 12px;
+      border-radius: 10px;
+    }
+
+    .needs-improvement { background-color: #ffe0e0; color: #b00020; }
+    .good { background-color: #fff7cc; color: #a67900; }
+    .very-good { background-color: #d5fdd5; color: #207a20; }
+    .excellent { background-color: #d0e9ff; color: #1a73e8; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Enter Your Marks</h2>
+    <input type="number" id="marks" min="0" max="100" placeholder="Enter marks here">
+    <button onclick="showResult()">Check Result</button>
+    <div id="output" class="result"></div>
+  </div>
+
+  <script>
+    function showResult() {
+      const marks = parseInt(document.getElementById('marks').value);
+      const output = document.getElementById('output');
+
+      if (isNaN(marks) || marks < 0 || marks > 100) {
+        output.textContent = "Please enter a valid mark between 0 and 100.";
+        output.className = "result needs-improvement";
+        return;
+      }
+
+      if (marks < 60) {
+        output.textContent = "Needs Improvement";
+        output.className = "result needs-improvement";
+      } else if (marks < 80) {
+        output.textContent = "Good";
+        output.className = "result good";
+      } else if (marks < 90) {
+        output.textContent = "Very Good";
+        output.className = "result very-good";
+      } else {
+        output.textContent = "Excellent";
+        output.className = "result excellent";
+      }
+    }
+  </script>
+
+</body>
+</html>
